@@ -12,13 +12,20 @@ require('core-js/fn/object/freeze');
 const React = require("react");
 const ReactDOM = require("react-dom");
 
-
-import CommentBox from './myComponent'
+var MyComponent = React.createClass({
+    render: function(){
+        return (
+            <div>
+                this is my Component~
+            </div>
+        );
+    }
+});
 
 ReactDOM.render(
     <div>
         <h1> hello world ! </h1>
-        <CommentBox />
+        <MyComponent />
     </div>,
     document.getElementById("example")
 );
