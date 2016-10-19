@@ -74,6 +74,9 @@
 
 	__webpack_require__(174);
 
+	_MyComponent2["default"].say();
+	_MyComponent2["default"].name = "Tom";
+
 	_reactDom2["default"].render(_react2["default"].createElement(
 	    "div",
 	    null,
@@ -82,7 +85,7 @@
 	        null,
 	        " hello world ! "
 	    ),
-	    _react2["default"].createElement(_MyComponent2["default"], null)
+	    _MyComponent2["default"].render()
 	), document.getElementById("example"));
 
 /***/ },
@@ -21458,19 +21461,11 @@
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(35);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -21485,15 +21480,24 @@
 	var MyComponent = function (_React$Component) {
 	    _inherits(MyComponent, _React$Component);
 
-	    function MyComponent() {
+	    function MyComponent(name) {
 	        _classCallCheck(this, MyComponent);
 
-	        return _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this));
+
+	        _this.name = name;
+	        return _this;
 	    }
 
 	    _createClass(MyComponent, [{
+	        key: "say",
+	        value: function say() {
+	            console.log(this.name);
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
+	            var text = "变量注入的字符串 and my name is: " + this.name;
 	            return _react2["default"].createElement(
 	                "div",
 	                null,
@@ -21505,16 +21509,25 @@
 	                _react2["default"].createElement(
 	                    "div",
 	                    null,
-	                    "1"
+	                    text
 	                )
 	            );
+	        }
+	    }, {
+	        key: "name",
+	        set: function set(name) {
+	            this._name = name;
+	        },
+	        get: function get() {
+	            return this._name.toUpperCase();
 	        }
 	    }]);
 
 	    return MyComponent;
 	}(_react2["default"].Component);
 
-	exports["default"] = MyComponent;
+	var my_component = new MyComponent("jack");
+	module.exports = my_component;
 
 /***/ },
 /* 174 */
